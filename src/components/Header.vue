@@ -4,7 +4,7 @@
       <div id="title-sidebar" class="left">
         <a class="image">
           <img src="../assets/github.png" alt />
-          Vue project
+          <span class="my-title">后台管理</span>
         </a>
       </div>
       <div class="right" id="right-bread">
@@ -40,7 +40,7 @@
                     <i class="el-icon-arrow-down"></i>
                   </div>
                   <div>
-                    <img src="../assets/personal/user01.jpg" alt />
+                    <img src="../assets/personal/user.jpg" alt />
                   </div>
                 </span>
                 <el-dropdown-menu slot="dropdown">
@@ -156,6 +156,7 @@ export default {
         matched = [{ path: "/home", meta: { title: "首页" } }].concat(matched);
       }
       this.breadList = matched;
+      this.breadList.splice(0,1)
     }
   },
   watch: {
@@ -172,13 +173,14 @@ export default {
 <style scoped>
 #header {
   width: 100%;
-  height: 50px;
+  height: 80px;
   
 }
 .wrap {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
   
 }
@@ -195,7 +197,7 @@ export default {
   width: calc(100% - 200px);
   background: #ffffff;
   transition: 1s;
-  border-bottom: 1px solid #d9d9d9;
+  /* height: 100%; */
 }
 .el-breadcrumb {
   line-height: 50px;
@@ -207,10 +209,12 @@ li {
 .image {
   color: #333333;
   text-align: center;
-  position: absolute;
   line-height: 50px;
   margin-left: 24px;
   cursor: pointer;
+}
+.my-title{
+  margin-left: 10px;
 }
 .image img {
   width: 28px;

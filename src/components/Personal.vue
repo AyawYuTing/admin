@@ -2,7 +2,7 @@
   <div id="personal">
     <div class="wrap">
       <div class="img">
-        <img src="../assets/personal/user01.jpg" alt />
+        <img src="../assets/personal/user.jpg" alt />
       </div>
       <div class="message">
         <div class="user">admin</div>

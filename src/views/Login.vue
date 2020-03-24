@@ -5,10 +5,11 @@
       status-icon
       :rules="rules"
       ref="ruleForm"
-      label-width="100px"
+      label-width="80px"
+      label-position="left"
       class="demo-ruleForm"
     >
-      <h1>vue-admin-app用户登录</h1>
+      <h1 class="form-title">阿遥的漫画后台系统</h1>
       <el-form-item label="用户名" prop="username">
         <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
       </el-form-item>
@@ -17,7 +18,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="sendform('ruleForm')">登录</el-button>
+        <el-button type="primary" @click="onSubmit">登录</el-button>
         <vcode :show="isShow" @onSuccess="onSuccess" @onClose="onClose" />
       </el-form-item>
     </el-form>
@@ -26,7 +27,7 @@
 
 
 <script>
-import vcode from "vue-puzzle-vcode";
+import vcode from "vue-puzzle-vcode"
 export default {
   nameL: "login",
   components: {
@@ -84,25 +85,24 @@ export default {
     },
     // 登录发送数据
     sendform() {
-      this.onSubmit();
       if (this.key == 1) {
         if (this.ruleForm.username == "" || this.ruleForm.password == "") {
           alert("请输入用户名或者密码");
         } else {
           let newform = {
-            username: this.ruleForm.username,
-            password: this.ruleForm.password
+            name: this.ruleForm.username,
+            psw: this.ruleForm.password
           };
-          this.axios
-            .post("/login", newform)
+          this.postRequest("/users/login", newform)
             .then(res => {
-              const token = res.data.data.userInfo.token;
+              const token = res.token;
+              console.log(res)
               localStorage.setItem("loginToken", token);
               this.$store.getters.change;
               this.$router.push("/display");
             })
             .catch(err => {
-               ;
+               
             });
         }
       }
@@ -122,14 +122,14 @@ export default {
     }
   },
   mounted() {
-    this.$notify({
-      title: "提示",
-      message:
-        "目前有两个账号可以登录，分别收管理员和用户，用户名分别是admin,user密码都为：123456",
-      type: "warning",
-      duartion: 0
-    }),
-      this.getform();
+    // this.$notify({
+    //   title: "提示",
+    //   message:
+    //     "目前有两个账号可以登录，分别收管理员和用户，用户名分别是admin,user密码都为：123456",
+    //   type: "warning",
+    //   duartion: 0
+    // }),
+    //   this.getform();
   }
 };
 </script>
@@ -151,9 +151,10 @@ export default {
   padding: 50px;
 }
 h1 {
-  margin-left: -50px;
   font-family: Helvetica, ‘Hiragino Sans GB’, ‘Microsoft Yahei’, ‘微软雅黑’,
     Arial, sans-serif;
+  width: 100%;
+  text-align: center;
 }
 
 .el-form-item {

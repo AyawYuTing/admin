@@ -1,7 +1,7 @@
 <template>
   <div id="sidebar">
     <el-container style="width:200px;">
-      <el-aside id="elaside" width="200px" style="border-top:1px solid #d9d9d9">
+      <el-aside id="elaside" width="200px" style="border-top:1px solid rgb(240, 243, 244)">
         <el-menu :default-openeds="['1', '1']">
           <router-link to="/home">
             <el-submenu index="1">
@@ -257,7 +257,7 @@ export default {
   position: absolute;
   left: 200px;
   right: 0;
-  top: 80px;
+  top: 100px;
   bottom: 0;
   margin: auto;
   background: #ffffff;

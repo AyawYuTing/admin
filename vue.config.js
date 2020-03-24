@@ -8,7 +8,7 @@ module.exports = {
 		hotOnly: false,
 		proxy: {
 			'/api': {
-				target: 'https://www.fastmock.site/mock/7ff7ba8b60619bef6fd647ceec01169a/admin', //对应自己的接口
+				target: 'localhost:3000', //对应自己的接口
 				changeOrigin: true,
 				ws: true,
 				pathRewrite: {
