@@ -4,7 +4,7 @@
       <div id="title-sidebar" class="left">
         <a class="image">
           <img src="../assets/github.png" alt />
-          <span class="my-title">后台管理</span>
+          <span class="my-title">Manga</span>
         </a>
       </div>
       <div class="right" id="right-bread">
@@ -36,7 +36,7 @@
               <el-dropdown>
                 <span class="el-dropdown-link">
                   <div class="admin">
-                    admin
+                    Ayaw
                     <i class="el-icon-arrow-down"></i>
                   </div>
                   <div>
@@ -156,7 +156,7 @@ export default {
         matched = [{ path: "/home", meta: { title: "首页" } }].concat(matched);
       }
       this.breadList = matched;
-      this.breadList.splice(0,1)
+      // this.breadList.splice(0,1)
     }
   },
   watch: {

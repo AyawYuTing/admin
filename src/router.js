@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import display from './views/Diplay.vue'
-
+const Home = () => import('./views/Home.vue')
+const Category = () => import('./views/categories/index.vue')
 
 Vue.use(Router)
 
@@ -12,9 +13,9 @@ const router = new Router({
     { path: "/", redirect: '/login' },
     { path: "/login", component: () => import('./views/Login.vue') },
     {
-      path: "/display", component: display, name: "home", meta: { title: '#' }, redirect: "/home", children: [
+      path: "/display", component: display, name: "home", meta: { title: '后台系统' }, redirect: "/home", children: [
         // 二级路由
-        { path: "/home", meta: { title: '首页' }, component: () => import('./views/Home.vue') },
+        { path: "/home", name: "home", meta: { title: '首页' }, component:Home },
         { path: "/personal", meta: { title: '个人中心' }, component: () => import('./components/Personal.vue') },
         { path: "/driver", meta: { title: '引导' }, component: () => import('./components/driver/Driver.vue') },
         //permission
@@ -39,7 +40,10 @@ const router = new Router({
 
         // nav
         { path: "/nav1", meta: { title: '导航1' }, component: () => import('./components/nav/Nva1.vue') },
-        { path: "/nav2", meta: { title: '导航2' }, component: () => import('./components/nav/Nav2.vue') }
+        { path: "/nav2", meta: { title: '导航2' }, component: () => import('./components/nav/Nav2.vue') },
+
+        // 分类管理
+        { path: "/categories", name: "categories", meta: { title: '分类' }, component:Category },
       ]
     },
     { path: "/header", component: () => import('./components/Header.vue') },

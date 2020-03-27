@@ -8,7 +8,6 @@
               <template slot="title">
                 <i class="el-icon-s-data"></i>
                 首页
-                
               </template>
             </el-submenu>
           </router-link>
@@ -21,56 +20,6 @@
               </template>
             </el-submenu>
           </router-link>
-
-          <div id="titledirver">
-            <el-submenu index="3">
-              <template slot="title">
-                <i class="el-icon-lock"></i>
-                权限许可
-              </template>
-              <el-menu-item-group>
-                <router-link to="/user">
-                  <el-menu-item index="3-1">
-                    <i class="el-icon-user"></i>
-                    用户页面
-                  </el-menu-item>
-                </router-link>
-
-                <router-link to="/administrators">
-                  <el-menu-item index="3-2">
-                    <i class="el-icon-user-solid"></i>
-                    管理员页面
-                  </el-menu-item>
-                </router-link>
-                <router-link to="/setting">
-                  <el-menu-item index="3-3">
-                    <i class="el-icon-s-tools"></i>
-                   权限设置
-                  </el-menu-item>
-                </router-link>
-              </el-menu-item-group>
-            </el-submenu>
-          </div>
-
-          <el-submenu index="4">
-            <template slot="title">
-              <i class="el-icon-s-grid"></i>
-              Table
-            </template>
-            <el-menu-item-group>
-              <router-link to="/simpletable">
-                <el-menu-item index="4-1">
-                  普通表格
-                </el-menu-item>
-              </router-link>
-
-              <router-link to="/complextable">
-                <el-menu-item index="4-2">
-                  复杂表格
-                </el-menu-item>
-              </router-link>
-            </el-menu-item-group>
-          </el-submenu>
 
           <el-submenu index="5">
             <template slot="title">
@@ -101,64 +50,14 @@
             </el-menu-item-group>
           </el-submenu>
 
-          <el-submenu index="6">
-            <template slot="title">
-              <i class="el-icon-s-marketing"></i>Echarts
-            </template>
-            <el-menu-item-group>
-              <router-link to="/slideecharts">
-                <el-menu-item index="6-1">滑动charts</el-menu-item>
-              </router-link>
-
-              <router-link to="/switchecharts">
-                <el-menu-item index="6-2">切换charts</el-menu-item>
-              </router-link>
-              <router-link to="/map">
-                <el-menu-item index="6-3">map</el-menu-item>
-              </router-link>
-            </el-menu-item-group>
-          </el-submenu>
-
-          <el-submenu index="7">
-            <template slot="title">
-              <i class="el-icon-tickets"></i>Excel
-            </template>
-            <el-menu-item-group>
-              <router-link to="/exportexcel">
-                <el-menu-item index="7-1">Excel导出</el-menu-item>
-              </router-link>
-              <router-link to="/importexcel">
-                <el-menu-item index="7-2">Excel导入</el-menu-item>
-              </router-link>
-            </el-menu-item-group>
-          </el-submenu>
-
-          <router-link to="/error">
-            <el-submenu index="8">
-              <template slot="title">
-                <i class="el-icon-s-release"></i>
-                404
-              </template>
-            </el-submenu>
-          </router-link>
-
-          <a href="https://github.com/yqxshiki/vue-admin-webapp-" target="_black">
-            <el-submenu index="9">
-              <template slot="title">
-                <i class="el-icon-link"></i>
-                项目链接
-              </template>
-            </el-submenu>
-          </a>
-
           <el-submenu index="10">
             <template slot="title">
-              <i class="el-icon-setting"></i>导航菜单测试
+              <i class="el-icon-setting"></i>漫画管理
             </template>
             <el-menu-item-group>
               <router-link to="/nav1">
                 <el-menu-item index="3-1">
-                  <i class="el-icon-coffee"></i>菜单1
+                  <i class="el-icon-coffee"></i>全部漫画
                 </el-menu-item>
               </router-link>
 
@@ -169,12 +68,28 @@
               </router-link>
             </el-menu-item-group>
           </el-submenu>
+
+          <router-link to="/categories">
+            <el-submenu index="10">
+              <template slot="title">
+                <i class="el-icon-coin"></i>分类管理
+              </template>
+            </el-submenu>
+          </router-link>
+          <router-link to="/error">
+            <el-submenu index="8">
+              <template slot="title">
+                <i class="el-icon-s-release"></i>
+                404
+              </template>
+            </el-submenu>
+          </router-link>
         </el-menu>
       </el-aside>
     </el-container>
 
     <div class="wrap" id="sidebarwrap">
-      <router-view></router-view>
+      <router-view :key="key"></router-view>
     </div>
   </div>
 </template>
@@ -183,7 +98,16 @@
 
 <script>
 export default {
-  name: "sidebar"
+  computed: {
+    key() {
+        return this.$route.name !== undefined? this.$route.name + +new Date(): this.$route + +new Date()
+    }
+  },
+  watch:{
+    "$route":function(){
+      console.log(this.$route)
+    }
+  }
 };
 </script>
 

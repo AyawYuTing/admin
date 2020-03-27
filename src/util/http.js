@@ -148,27 +148,7 @@ axios.interceptors.response.use(response => {
 			if (timeDis < 500) {
 				return;
            }
-            Store.commit('update_no_login_notice_time', timestamp);
-            console.log('Store.getters.user_data---------',Store.getters.user_data);
-        	if(Store.getters.user_data){
-        		Store.commit('remove_user_data');
- 				console.log('登录过期----------------------------------------------------',Store.getters);
- 				if ($Vm.$route.matched.some(record => record.meta.roles == 'serve')) {
-	                $Vm.$router.replace({ path: '/login', query: { to: "server" } });
-	            } else if ($Vm.$route.matched.some(record => record.meta.roles == 'personal')) {
-	                $Vm.$router.replace({ path: '/login', query: { to: "parsonal" } });
-	            }else{
-	            	Store.commit('update_loginOver', true);
-	            }
-        		return;
-        	}
-            Store.commit('remove_user_data');
-            // 当登录无效状态的用户试图登录进入后台管理页时拦截回登录页
-            if ($Vm.$route.matched.some(record => record.meta.roles == 'serve')) {
-                $Vm.$router.replace({ path: '/login', query: { to: "server" } });
-            } else if ($Vm.$route.matched.some(record => record.meta.roles == 'personal')) {
-                $Vm.$router.replace({ path: '/login', query: { to: "parsonal" } });
-            }
+            
         } else {
             if (err.response.data.msg) {
                 Message.error({ message: err.response.data.msg });
